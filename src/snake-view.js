@@ -4,10 +4,12 @@ const Board = require("./board");
 // w: 87, a: 65, s: 83, d: 68
 
 class View {
-    constructor(displayElement) {
+    constructor(game, displayElement) {
         this.$el = $(displayElement);
-        this.board = new Board();
-        $(selector).keypress(this.handleKeyEvent(e));
+        this.game = game;
+        this.board = this.game.board;
+        $(document).keypress(this.handleKeyEvent.bind(this));
+        setInterval(this.step.bind(this), 500)
     }
 
     handleKeyEvent(event) {
@@ -26,4 +28,10 @@ class View {
                 break;
         }
     }
+
+    step() {
+        this.board.snake.move();
+    }
 }
+
+module.exports = View;

@@ -2,9 +2,10 @@ class Snake {
 
     CARD_DIR = ["N","E","S","W"]
     
-    constructor() {
+    constructor(board) {
         this.direction = "N";
         this.segments = [];
+        this.board = board;
     }
 
     move() {
