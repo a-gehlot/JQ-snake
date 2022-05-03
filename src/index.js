@@ -5,5 +5,5 @@ const View = require("./snake-view")
 $(() => {
     let board = new Board();
     let snake = new Snake(board);
-    new View(snake, $('main'));
+    new View(snake, $('.snake-game'));
 })

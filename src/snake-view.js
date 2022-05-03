@@ -5,11 +5,22 @@ const Board = require("./board");
 
 class View {
     constructor(game, displayElement) {
-        this.$el = $(displayElement);
+        this.$el = displayElement;
         this.game = game;
         this.board = this.game.board;
+        this.buildBoard();
         $(document).keypress(this.handleKeyEvent.bind(this));
         setInterval(this.step.bind(this), 500)
+    }
+
+    buildBoard() {
+        for (let i = 0; i < 20; i++) {
+            let ul = $("<ul></ul>")
+            for (let j = 0; j < 20; j++) {
+                ul.append("<li></li>")
+            }
+            this.$el.append(ul);
+        }
     }
 
     handleKeyEvent(event) {
