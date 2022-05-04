@@ -4,7 +4,7 @@ class Snake {
     
     constructor(board) {
         this.direction = "N";
-        this.segments = [];
+        this.segments = [[10,10]];
         this.board = board;
     }
 

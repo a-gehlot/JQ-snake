@@ -9,6 +9,7 @@ class View {
         this.game = game;
         this.board = this.game.board;
         this.buildBoard();
+        this.buildSnake();
         $(document).keypress(this.handleKeyEvent.bind(this));
         setInterval(this.step.bind(this), 500)
     }
@@ -21,6 +22,14 @@ class View {
             }
             this.$el.append(ul);
         }
+    }
+
+    buildSnake() {
+        this.board.snake.segments.forEach((segment) => {
+            let $row = $(`ul:nth-child(${segment[0]})`)
+            let $col = $row.find(`li:nth-child(${segment[1]})`)
+            $col.css("background-color", "green")
+        })
     }
 
     handleKeyEvent(event) {

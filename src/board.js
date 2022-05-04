@@ -9,9 +9,11 @@ class Board {
     createBoard () {
         let boardArr = [];
         for (let i = 0; i < 20; i++) {
+            let row = []
             for (let j = 0; j < 20; j++) {
-                boardArr.push([i, j])
+                row.push([])
             }
+            boardArr.push(row);
         }
         return boardArr;
     }
