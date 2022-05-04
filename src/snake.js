@@ -1,8 +1,8 @@
 class Snake {
 
     CARD_DIR = {
-        "N": [1,0],
-        "S": [-1,0],
+        "N": [-1,0],
+        "S": [1,0],
         "E": [0,1],
         "W": [0,-1]
     }
@@ -18,6 +18,16 @@ class Snake {
         switch(this.direction) {
             case "N":
                 this.addSeg(lastSeg, [-1,0]);
+                break;
+            case "S":
+                this.addSeg(lastSeg, [1,0]);
+                break;
+            case "E":
+                this.addSeg(lastSeg, [0,1]);
+                break;
+            case "W":
+                this.addSeg(lastSeg, [0, -1]);
+                break;
         }
     }
 
@@ -31,6 +41,7 @@ class Snake {
 
     turn(dir) {
         this.direction = dir;
+        console.log(this.dir);
     }
 }
 

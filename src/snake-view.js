@@ -10,7 +10,7 @@ class View {
         this.board = this.game.board;
         this.buildBoard();
         this.drawBoard();
-        $(document).keypress(this.handleKeyEvent.bind(this));
+        $(document).keydown(this.handleKeyEvent.bind(this));
         setInterval(this.step.bind(this), 500)
     }
 
