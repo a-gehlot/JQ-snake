@@ -9,7 +9,7 @@ class View {
         this.game = game;
         this.board = this.game.board;
         this.buildBoard();
-        this.buildSnake();
+        this.drawBoard();
         $(document).keypress(this.handleKeyEvent.bind(this));
         setInterval(this.step.bind(this), 500)
     }
@@ -24,7 +24,8 @@ class View {
         }
     }
 
-    buildSnake() {
+    drawBoard() {
+        $("ul li").css("background-color", "white")
         this.board.snake.segments.forEach((segment) => {
             let $row = $(`ul:nth-child(${segment[0]})`)
             let $col = $row.find(`li:nth-child(${segment[1]})`)
@@ -51,6 +52,7 @@ class View {
 
     step() {
         this.board.snake.move();
+        this.drawBoard()
     }
 }
 
