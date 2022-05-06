@@ -11,7 +11,7 @@ class View {
         this.buildBoard();
         this.drawBoard();
         $(document).keydown(this.handleKeyEvent.bind(this));
-        setInterval(this.step.bind(this), 500)
+        this.stepInterval = setInterval(this.step.bind(this), 500)
     }
 
     buildBoard() {
@@ -51,8 +51,13 @@ class View {
     }
 
     step() {
-        this.board.snake.move();
-        this.drawBoard()
+        if (this.board.snake.inBounds()) {
+            this.board.snake.move();
+            this.drawBoard()
+        } else {
+          window.alert("game over!")
+          clearInterval(this.stepInterval)
+        }
     }
 }
 

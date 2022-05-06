@@ -43,6 +43,14 @@ class Snake {
         this.direction = dir;
         console.log(this.dir);
     }
+
+    inBounds() {
+        if (this.segments[0][0] >= 20 || this.segments[0][0] <= 0 ||
+            this.segments[0][1] >= 20 || this.segments[0][1] <= 0) {
+                return false;
+            }
+        return true;
+    }
 }
 
 module.exports = Snake;
