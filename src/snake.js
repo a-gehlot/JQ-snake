@@ -9,11 +9,15 @@ class Snake {
     
     constructor(board) {
         this.direction = "N";
-        this.segments = [[10,10], [11,10], [12,10], [13,10]];
+        this.segments = [[10,10], [11,10], [12,10], [13,10], [14, 10], [15,10]];
         this.board = board;
+        $(":button").on("click", this.addRearSeg.bind(this));
     }
 
     move() {
+        if (!this.inBounds() || this.hitSelf()) {
+            return false;
+        }
         switch(this.direction) {
             case "N":
                 this.shiftSeg([-1,0]);
@@ -28,6 +32,7 @@ class Snake {
                 this.shiftSeg([0, -1]);
                 break;
         }
+        return true;
     }
 
     shiftSeg(dirCoord) {
@@ -74,15 +79,32 @@ class Snake {
     }
 
     inBounds() {
-        if (this.segments[0][0] >= 20 || this.segments[0][0] <= 0 ||
-            this.segments[0][1] >= 20 || this.segments[0][1] <= 0) {
+        if (this.segments[0][0] >= 21 || this.segments[0][0] <= 0 ||
+            this.segments[0][1] >= 21 || this.segments[0][1] <= 0) {
                 return false;
             }
         return true;
     }
 
-    addRearSeg() {
+    hitSelf() {
+        if (this.segments.length <= 4) {
+            return false;
+        }
+        for (let i = 4; i < this.segments.length; i++) {
+            if (JSON.stringify(this.segments[0]) === JSON.stringify(this.segments[i])) {
+                return true;
+            }
+        }
+        return false;
+    }
 
+    addRearSeg() {
+        let lastSeg = this.segments[this.segments.length - 1];
+        let newSeg = [];
+        for (let i = 0; i <= 2; i++) {
+            newSeg.push(lastSeg[i] + this.CARD_DIR[`${this.direction}`][i]);
+        }
+        this.segments.push(newSeg);
     }
     
 }

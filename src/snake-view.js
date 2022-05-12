@@ -51,9 +51,8 @@ class View {
     }
 
     step() {
-        if (this.board.snake.inBounds()) {
-            this.board.snake.move();
-            this.drawBoard()
+        if (this.board.snake.move()) {
+            this.drawBoard() 
         } else {
           window.alert("game over!")
           clearInterval(this.stepInterval)
