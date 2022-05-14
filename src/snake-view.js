@@ -26,11 +26,15 @@ class View {
 
     drawBoard() {
         $("ul li").css("background-color", "white")
+        let $appleRow = $(`ul:nth-child(${this.board.apple[0] + 1})`)
+        let $appleCol = $appleRow.find(`li:nth-child(${this.board.apple[1] + 1})`)
+        $appleCol.css('background-color', "orange")
         this.board.snake.segments.forEach((segment) => {
-            let $row = $(`ul:nth-child(${segment[0]})`)
-            let $col = $row.find(`li:nth-child(${segment[1]})`)
+            let $row = $(`ul:nth-child(${segment[0] + 1})`)
+            let $col = $row.find(`li:nth-child(${segment[1] + 1})`)
             $col.css("background-color", "green")
         })
+        console.log(this)
     }
 
     handleKeyEvent(event) {

@@ -2,8 +2,9 @@ const Snake = require("./snake");
 
 class Board {
     constructor() {
-        this.snake = new Snake();
+        this.snake = new Snake(this);
         this.board = this.createBoard();
+        this.addApple();
     }
 
     createBoard () {
@@ -16,6 +17,13 @@ class Board {
             boardArr.push(row);
         }
         return boardArr;
+    }
+
+    addApple() {
+        let i = Math.floor(Math.random() * 20);
+        let j = Math.floor(Math.random() * 20);
+        this.board[i][j] = "A"
+        this.apple = [i, j]
     }
 
 }
