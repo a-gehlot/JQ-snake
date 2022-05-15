@@ -22,8 +22,21 @@ class Board {
     addApple() {
         let i = Math.floor(Math.random() * 20);
         let j = Math.floor(Math.random() * 20);
+        while (this.isOccupied([i, j])) {
+            i = Math.floor(Math.random() * 20);
+            j = Math.floor(Math.random() * 20);
+        }
         this.board[i][j] = "A"
         this.apple = [i, j]
+    }
+
+    isOccupied(pos) {
+        for (let i = 0; i < this.snake.segments.length; i++) {
+            if (JSON.stringify(this.snake.segments[i]) === JSON.stringify(pos)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
